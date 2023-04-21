@@ -33,7 +33,7 @@ public class StartPercyTest {
 
     public static void startPercy() {
         // Run Percy server command that depends on environment variable in the background
-        String percyCommand = "percy exec:start -v";
+        String percyCommand = "npx percy exec:start -v";
         String processCommand = String.format("start /B cmd.exe /c \"%s\" >> percy-start.log 2>&1", percyCommand);
         try {
             ProcessBuilder processProcessBuilder = new ProcessBuilder("cmd.exe", "/c", processCommand);
@@ -45,7 +45,7 @@ public class StartPercyTest {
 
     public static void stopPercy() {
         // Stop the Percy Server
-        String percyCommand = "percy exec:stop -v";
+        String percyCommand = "npx percy exec:stop -v";
         String processCommand = String.format("start /B cmd.exe /c \"%s\" >> percy-stop.log 2>&1", percyCommand);
         try {
             ProcessBuilder processProcessBuilder = new ProcessBuilder("cmd.exe", "/c", processCommand);
