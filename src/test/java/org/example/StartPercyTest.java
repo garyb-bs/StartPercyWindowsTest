@@ -29,6 +29,7 @@ public class StartPercyTest {
 
         // Stop the Percy server when done
         stopPercy();
+        finalizePercyBuild();
     }
 
     public static void startPercy() {
@@ -47,6 +48,18 @@ public class StartPercyTest {
         // Stop the Percy Server
         String percyCommand = "npx percy exec:stop -v";
         String processCommand = String.format("start /B cmd.exe /c \"%s\" >> percy-stop.log 2>&1", percyCommand);
+        try {
+            ProcessBuilder processProcessBuilder = new ProcessBuilder("cmd.exe", "/c", processCommand);
+            processProcessBuilder.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void finalizePercyBuild() {
+        // Stop the Percy Server
+        String percyCommand = "npx percy build:finalize";
+        String processCommand = String.format("start /B cmd.exe /c \"%s\" >> percy-build-finalize.log 2>&1", percyCommand);
         try {
             ProcessBuilder processProcessBuilder = new ProcessBuilder("cmd.exe", "/c", processCommand);
             processProcessBuilder.start();
